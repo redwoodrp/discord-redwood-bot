@@ -5,6 +5,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Font asset (not allowed to distribute)
+src/assets/NanumPenScript-Regular.ttf
+
 # Runtime data
 pids
 *.pid
