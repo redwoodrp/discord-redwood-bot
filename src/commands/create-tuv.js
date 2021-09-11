@@ -32,7 +32,7 @@ module.exports = {
       brand: 'brand',
       model: 'model',
       year: 'year',
-      engineType: 'engine type',
+      motorSize: 'motor size(?: ?\\(ccm\\))?',
       enginePower: 'engine power(?: ?\\(hp\\))?',
       fuelType: 'fuel type',
       transmission: 'transmission and gears',
@@ -40,13 +40,10 @@ module.exports = {
       color: 'colou?r',
       weight: 'weight ?(?:\\(kg\\))?',
       seats: 'seats',
-      additionalInfo: 'additional ?(?:infos?|informations?)?',
+      additionalInfos: 'additional ?(?:infos?|informations?)?',
     };
     const getVehicleInfo = (inp) => {
       const baseRegex = ': ?([A-z0-9-()/., ]*)';
-      const d = new Date();
-      // const dn = new Date(d.setMonth(d.getMonth() + 1));
-
       let vehicleOut = {
         // expiresIn: `${dn.getUTCDay()}/${dn.getUTCMonth()}/${dn.getUTCFullYear()}`,
         expiresIn: 'Issued + 1 month',
@@ -81,8 +78,8 @@ module.exports = {
         if (match) vehicleOut[key] = match[1];
       });
 
-      const motorSizeMatch = vehicleOut.engineType.match(/([0-9].[0-9])/gi);
-      if (motorSizeMatch) vehicleOut.motorSize = parseFloat(motorSizeMatch[0]) * 1000;
+      // const motorSizeMatch = vehicleOut.engineType.match(/([0-9].[0-9])/gi);
+      // if (motorSizeMatch) vehicleOut.motorSize = parseFloat(motorSizeMatch[0]) * 1000;
 
       return vehicleOut;
     };

@@ -18,8 +18,8 @@ License Plate:
 Year:
 Brand:
 Model:
-Engine Type: _decimal number_ _some text_ _example: 4.5L V_
-Engine Power: 
+Motor Size(ccm):
+Engine Power(hp):
 Fuel Type: 
 Transmission and Gears:
 Body Type:
