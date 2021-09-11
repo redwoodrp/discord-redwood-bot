@@ -22,7 +22,7 @@ module.exports = {
     const vin = interaction.options.getString('vin');
     const category = interaction.options.getString('category');
 
-    const tuvRegex = /license plate: ?([A-z0-9-/(). ]+)\n?1st ?registry date: ?([A-z0-9-/().]*)\n?brand: ?([A-z0-9-/(). ]*)\n?model: ?([A-z0-9-/(). ]*)\n?year: ?([A-z0-9-/(). ]*)\n?engine type: ?([A-z0-9-/(). ]*)\n?engine power ?\(hp\): ?([A-z0-9-/(). ]*)\n?fuel type: ?([A-z0-9-/(). ]*)\n?transmission and gears: ?([A-z0-9-/(). ]*)\n?body type: ?([A-z0-9-/(). ]*)\n?color: ?([A-z0-9-/(). ]*)\n?weight ?\(k?g?\): ?([A-z0-9-/(). ]*)\n?(?:additional infos: ?([A-z0-9-/(). ]*))?/i;
+    // const tuvRegex = /license plate: ?([A-z0-9-/(). ]+)\n?1st ?registry date: ?([A-z0-9-/().]*)\n?brand: ?([A-z0-9-/(). ]*)\n?model: ?([A-z0-9-/(). ]*)\n?year: ?([A-z0-9-/(). ]*)\n?engine type: ?([A-z0-9-/(). ]*)\n?engine power ?\(hp\): ?([A-z0-9-/(). ]*)\n?fuel type: ?([A-z0-9-/(). ]*)\n?transmission and gears: ?([A-z0-9-/(). ]*)\n?body type: ?([A-z0-9-/(). ]*)\n?color: ?([A-z0-9-/(). ]*)\n?weight ?\(k?g?\): ?([A-z0-9-/(). ]*)\n?(?:additional infos: ?([A-z0-9-/(). ]*))?/i;
 
     const labels = {
       issued: 'issued',
@@ -78,15 +78,10 @@ module.exports = {
         if (match) vehicleOut[key] = match[1];
       });
 
-      // const motorSizeMatch = vehicleOut.engineType.match(/([0-9].[0-9])/gi);
-      // if (motorSizeMatch) vehicleOut.motorSize = parseFloat(motorSizeMatch[0]) * 1000;
-
       return vehicleOut;
     };
 
     const filter = response => {
-      // Backup regex: /license plate: ?([A-z0-9-/().]+)\n1st ?registry date: ?([A-z0-9-/().]*)\nbrand: ?([A-z0-9-/(). ]*)\nmodel: ?([A-z0-9-/(). ]*)\nyear: ?([A-z0-9-/(). ]*)\nengine type: ?([A-z0-9-/(). ]*)\nengine power\(hp\): ?([A-z0-9-/(). ]*)\ntransmission and gears: ?([A-z0-9-/(). ]*)\nbody type: ?([A-z0-9-/(). ]*)\ncolor: ?([A-z0-9-/(). ]*)\nweight\(kg\): ?([A-z0-9-/(). ]*)\nadditional Infos: ?([A-z0-9-/(). ]*)/gi
-      //  return tuvRegex.test(response.content) && response.author.id === interaction.member.id;
       const tempVehicle = getVehicleInfo(response.content);
 
       Object.keys(labels).forEach((label) => {
