@@ -1,0 +1,15 @@
+[Unit]
+Description=Discord-bot Redwood
+StartLimitBurst=50
+StartLimitIntervalSec=5
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=ilja
+WorkingDirectory=/home/ilja/discord-redwood-bot
+ExecStart=/home/ilja/discord-redwood-bot/src/index.js
+
+[Install]
+WantedBy=multi-user.target
